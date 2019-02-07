@@ -1,0 +1,3 @@
+```js
+require("dotenv").config();
+```
