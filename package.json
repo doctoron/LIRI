@@ -1,8 +1,18 @@
 {
-  "name": "LIRI",
+  "name": "liri",
   "version": "1.0.0",
-  "description": "Language Interpretation and Recognition Interface is a command line node app",
+  "description": "Speech Interpretation and Recognition Interface",
   "main": "keys.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "node-omdb": "^1.0.1",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.88.0",
+    "spotify": "^0.3.0",
+    "spotify-web-api-node": "^4.0.0",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +20,14 @@
     "type": "git",
     "url": "git+https://github.com/doctoron/LIRI.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "LIRI",
+    "Spotify",
+    "Axios",
+    "OMDB",
+    "Moment"
+  ],
+  "author": "Ronald Antonio",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/doctoron/LIRI/issues"
