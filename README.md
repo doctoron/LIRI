@@ -166,6 +166,7 @@ require("dotenv").config();
    * Step Four: On the next screen, scroll down to where you see your client id and client secret. Copy these values down somewhere, you'll need them to use the Spotify API and the [node-spotify-api package](https://www.npmjs.com/package/node-spotify-api).
 
 3. `node liri.js movie-this '<movie name here>'`
+// npm install omdb-client
 
    * This will output the following information to your terminal/bash window:
 

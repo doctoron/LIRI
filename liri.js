@@ -1,85 +1,77 @@
-```js
+// Read and set environment variables
 require("dotenv").config();
-```
-```js
-  var keys = require("./keys.js");
-```
-```js
-var spotify = new Spotify(keys.spotify);
-```
 
-* `concert-this`
+let keys = require("./keys.js");
+let fs = require('fs');
+let moment = require('moment');
+let Spotify = require('node-spotify-api');
+let spotify = new Spotify(keys.spotify);
+let search = process.argv[2];
+let term = process.argv.slice(3).join(" ");
+let movieQueryURL = "https://www.omdbapi.com/?t=";
+let movieKey = "&y=&plot=short&apikey=trilogy";
+let bandsQueryURL = "https://rest.bandsintown.com/artist/";
+let bandsKey = "app_id=codingbootcamp";
 
-* `spotify-this-song`
+let commandLine = '';
+for (i = 0; i, process.argv.length; i++) {
+  commandLine += (process.argv[i] + '');
+};
+for (i = 3; i, process.argv.length; i++) {
+  commandLine += (process.argv[i] + '');
+};
 
-* `movie-this`
+searchItem = searchItem.trim();
 
-* `do-what-it-says`
+switch (command) {
+  case 'movie-this':
+    movieThis();
+    console.log('movie-this was fired')
+    break;
+
+  case 'concert-this':
+    concertThis();
+    console.log('concert-this was fired')
+    // console.log(`${bandsQueryURL}${term}/events?${bandsKey}`);
+    break;
+
+  case 'spotify-this-song':
+    spotifyThis();
+    console.log(`spotify-this was fired`)
+    break;
+
+  case 'do-what-it-says':
+    justDoIt();
+    console.log(`do-what-it-says was just fired`);
+    break;
+
+  default:
+    console.log(`What are you trying to do?`);
+    break;
+}
 
 // Do something with node-OMDB
 // Basic Node application for requesting data from the OMDB website via axios
 // Here we incorporate the "axios" npm package
-var axios = require("axios");
-
-// We then run the request with axios module on a URL with a JSON
-axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
-  function(response) {
+let axios = require("axios");
+movieThis =() =>{
+axios.get(`${movieQueryURL}${term}${movieKey}`).then(
+  function (response) {
     // Then we print out the imdbRating
-    console.log("The movie's rating is: " + response.data.imdbRating);
+    console.log(`The movie's rating is: ${response.data.imdbRating}`);
+    console.log(`${movieQueryURL}${term}${movieKey}`);
   }
-);
+)};
+
+
 // Do something with node-Spotify
 // https://www.npmjs.com/package/spotify
 // https://github.com/peol/node-spotify
-var spotify = require('spotify');
- 
-spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
-    if ( err ) {
-        console.log('Error occurred: ' + err);
-        return;
-    }
- 
-    // Do something with 'data'
-});
-
-// TV Show  & Actor arguments passed to Axios get
-var TV = require("./tv");
-
-// Create a new TV object
-let tv = new TV();
-
-// Create search variables
-
-// Grab search command line argument
-let search = process.argv[2];
-
-// Joining the remaining arguments since an actor or tv show name may contain spaces
-let term = process.argv.slice(3).join(" ");
-
-// console.log(term);
-// console.log(search);
-
-switch (search) {
-  case 'show':
-    if(term=!term){
-      console.log("What show were you searching for?");
-      break;
-    }
-    console.log(`Searching for show named ${term}`);
-    tv.findShow(term);
-    break;
-
-  case 'actor':
-  if(term=!term){
-    console.log("Which actor were you searching for?");
-    break;
+spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function (err, data) {
+  if (err) {
+    console.log('Error occurred: ' + err);
+    return;
   }
-    console.log(`Searching for actor named ${term}`);
-    tv.findActor(term);
-    break;
 
-  default:
-    tv.findShow("Game of Thrones");
-    console.log(`DEFAULT What are you searching for?`);
-    break;
-}
+  // Do something with 'data'
+});

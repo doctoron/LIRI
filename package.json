@@ -5,8 +5,10 @@
   "main": "keys.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
     "node-omdb": "^1.0.1",
     "node-spotify-api": "^1.0.7",
+    "omdb-client": "^2.0.0",
     "request": "^2.88.0",
     "spotify": "^0.3.0",
     "spotify-web-api-node": "^4.0.0",
