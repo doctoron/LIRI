@@ -3,7 +3,7 @@ require("dotenv").config();
 
 let keys = require("./keys.js");
 let fs = require('fs');
-let moment = require('moment');
+let moment = require('moment.js');
 let Spotify = require('node-spotify-api');
 let spotify = new Spotify(keys.spotify);
 let search = process.argv[2];
@@ -54,24 +54,36 @@ switch (command) {
 // Basic Node application for requesting data from the OMDB website via axios
 // Here we incorporate the "axios" npm package
 let axios = require("axios");
-movieThis =() =>{
-axios.get(`${movieQueryURL}${term}${movieKey}`).then(
-  function (response) {
-    // Then we print out the imdbRating
-    console.log(`The movie's rating is: ${response.data.imdbRating}`);
-    console.log(`${movieQueryURL}${term}${movieKey}`);
+movieThis = () => {
+  axios.get(`${movieQueryURL}${term}${movieKey}`).then(
+    function (response) {
+      // Then we print out the imdbRating
+      console.log(`The movie's rating is: ${response.data.imdbRating}`);
+      console.log(`${movieQueryURL}${term}${movieKey}`);
+    }
+  )
+};
+
+concertThis = () => {
+  if (!searchItem) {
+    searchItem = "Earth Wind and Fire"
   }
-)};
+  requestAnimationFrame(`https://rest.bandsintown.com/artist/${searchItem}
+  /events?app_id=codingbootcamp, function (error, response, bool)`)
+  if (JSON.parse(body)[0] === undefined) {
+    console.log("Noupcoming shows found");
 
-
-// Do something with node-Spotify
-// https://www.npmjs.com/package/spotify
-// https://github.com/peol/node-spotify
-spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function (err, data) {
-  if (err) {
-    console.log('Error occurred: ' + err);
-    return;
   }
 
-  // Do something with 'data'
-});
+
+  // Do something with node-Spotify
+  // https://www.npmjs.com/package/spotify
+  // https://github.com/peol/node-spotify
+  spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function (err, data) {
+    if (err) {
+      console.log('Error occurred: ' + err);
+      return;
+    }
+
+    // Do something with 'data'
+  });
