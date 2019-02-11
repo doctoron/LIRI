@@ -1,89 +1,63 @@
-// Read and set environment variables
 require("dotenv").config();
 
-let keys = require("./keys.js");
-let fs = require('fs');
-let moment = require('moment.js');
-let Spotify = require('node-spotify-api');
-let spotify = new Spotify(keys.spotify);
-let search = process.argv[2];
-let term = process.argv.slice(3).join(" ");
-let movieQueryURL = "https://www.omdbapi.com/?t=";
-let movieKey = "&y=&plot=short&apikey=trilogy";
-let bandsQueryURL = "https://rest.bandsintown.com/artist/";
-let bandsKey = "app_id=codingbootcamp";
+// require npm omdb-client
+// require axios
+// const axios = require('axios');
 
-let commandLine = '';
-for (i = 0; i, process.argv.length; i++) {
-  commandLine += (process.argv[i] + '');
+let cliText = '';
+for (i = 2; i < process.argv.length; i++) {
+    cliText += (process.argv[i] + ' ');
 };
-for (i = 3; i, process.argv.length; i++) {
-  commandLine += (process.argv[i] + '');
-};
-
-searchItem = searchItem.trim();
+console.log(cliText);
 
 switch (command) {
-  case 'movie-this':
-    movieThis();
-    console.log('movie-this was fired')
-    break;
+    case 'movie-this':
+        axios.get(`https://www.omdbapi.com/?t=${cliText}&y=&plot=short&apikey=trilogy`)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-  case 'concert-this':
-    concertThis();
-    console.log('concert-this was fired')
-    // console.log(`${bandsQueryURL}${term}/events?${bandsKey}`);
-    break;
+        break;
 
-  case 'spotify-this-song':
-    spotifyThis();
-    console.log(`spotify-this was fired`)
-    break;
+    case 'spotify-this-song':
+        console.log(`spotify-this was fired`)
+        // spotifyThis();
 
-  case 'do-what-it-says':
-    justDoIt();
-    console.log(`do-what-it-says was just fired`);
-    break;
+        axios.get(`https://api.spotify.com/v1/searchq=${clilText}`)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
 
-  default:
-    console.log(`What are you trying to do?`);
-    break;
-}
+        break;
 
-// Do something with node-OMDB
-// Basic Node application for requesting data from the OMDB website via axios
-// Here we incorporate the "axios" npm package
-let axios = require("axios");
-movieThis = () => {
-  axios.get(`${movieQueryURL}${term}${movieKey}`).then(
-    function (response) {
-      // Then we print out the imdbRating
-      console.log(`The movie's rating is: ${response.data.imdbRating}`);
-      console.log(`${movieQueryURL}${term}${movieKey}`);
+    case 'concert-this':
+        console.log('concert-this was fired')
+        // concertThis();
+
+        axios.get(`${bandsQueryURL}${term}/events?${bandsKey}`)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+        break;
+
+    case 'do-what-it-says':
+        console.log(`do-what-it-says was just fired`);
+        // justDoIt();
+
+        break;
+
+        default:
+        console.log(`What are you trying to do?`);
+        break;
     }
-  )
-};
-
-concertThis = () => {
-  if (!searchItem) {
-    searchItem = "Earth Wind and Fire"
-  }
-  requestAnimationFrame(`https://rest.bandsintown.com/artist/${searchItem}
-  /events?app_id=codingbootcamp, function (error, response, bool)`)
-  if (JSON.parse(body)[0] === undefined) {
-    console.log("Noupcoming shows found");
-
-  }
-
-
-  // Do something with node-Spotify
-  // https://www.npmjs.com/package/spotify
-  // https://github.com/peol/node-spotify
-  spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function (err, data) {
-    if (err) {
-      console.log('Error occurred: ' + err);
-      return;
-    }
-
-    // Do something with 'data'
-  });
+    

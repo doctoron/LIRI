@@ -6,7 +6,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^6.2.0",
+    "env": "0.0.2",
     "fs": "0.0.1-security",
+    "moment": "^2.24.0",
     "node-omdb": "^1.0.1",
     "node-spotify-api": "^1.0.7",
     "omdb-client": "^2.0.0",
