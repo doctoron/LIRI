@@ -12,13 +12,15 @@ console.log(cliText);
 
 switch (command) {
     case 'movie-this':
-        axios.get(`https://www.omdbapi.com/?t=${cliText}&y=&plot=short&apikey=trilogy`)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        console.log(`movie-this was fired`)
+
+        // axios.get(`https://www.omdbapi.com/?t=${cliText}&y=&plot=short&apikey=trilogy`)
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
 
         break;
 
@@ -26,13 +28,13 @@ switch (command) {
         console.log(`spotify-this was fired`)
         // spotifyThis();
 
-        axios.get(`https://api.spotify.com/v1/searchq=${clilText}`)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        // axios.get(`https://api.spotify.com/v1/searchq=${clilText}`)
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     })
 
         break;
 
@@ -40,13 +42,13 @@ switch (command) {
         console.log('concert-this was fired')
         // concertThis();
 
-        axios.get(`${bandsQueryURL}${term}/events?${bandsKey}`)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        // axios.get(`${bandsQueryURL}${term}/events?${bandsKey}`)
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     })
 
         break;
 
@@ -56,8 +58,8 @@ switch (command) {
 
         break;
 
-        default:
+    default:
         console.log(`What are you trying to do?`);
+
         break;
-    }
-    
+}
