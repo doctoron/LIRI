@@ -7,15 +7,16 @@ exports.spotify = {
   secret: "5349065ce99c4170b47a2cffe4025ac3"
 }
 
+// exports.omdbApi = {
 // omdbApi = require('omdb-client');
 // movieQueryURL = "https://www.omdbapi.com/?t=";
 // exports.omdbApi = {
 
-//   var params = {
-//     apiKey: '&y=&plot=short&apikey=trilogy',
+// var params = {
+    // apiKey: '&y=&plot=short&apikey=trilogy',
 //     title: 'Terminator',
 //     year: 2012
-//   }
+// }
 // omdbApi.get(params, function (err, data) {
-//     // process response...
-  // });
+// process response...  
+// });

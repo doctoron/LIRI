@@ -2,32 +2,26 @@ require("dotenv").config();
 // Use key data from keys.js
 let keys = require('./keys.js');
 let request = require('request');
-var Spotify = require('node-spotify-api');
-var spotify = new Spotify(keys.spotify);
- 
-let fs = require('fs');
+let Spotify = require('node-spotify-api');
+let spotify = new Spotify(keys.spotify);
+let searchItem = process.argv.slice(3).join(' '); 
+let command = process.argv[2];
+let bandsintown = require('bandsintown')('faswega');
 let axios = require('axios');
 let moment = require('moment');
-let searchItem = process.argv.slice(3).join(' ');
+let fs = require('fs');
 
-// Parse command line from array variables
-// let cliText = process.argv;
-let command = process.argv[2];
-// console.log(`process.argv was fired in cliText ${cliText}`);
+bandsintown
+    .getArtistEventList(searchItem)
+    .then(function (events) {
+        // return array of events
+    });
 
-// Gather multi-word search item into a single string element with spaces between words
-// searchItem = '';
-// for (let i = 3; i < cliText.length; i++) {
-//     if (i < cliText.length) {
-//         searchItem += (cliText[i] + ' ')
-//     }
-// }
-// console.log(searchItem);
+
+// console.log(`process.argv was fired in cliText ${command}`);
 // console.log(`'searchItem' was fired: ${searchItem}`);
 
-// command = command.trim();
-// console.log(command);
-var choice = function (command, searchItem) {
+let choice = function (command, searchItem) {
     switch (command) {
         case 'movie-this':
             console.log(`movie-this command was fired`)
@@ -41,26 +35,37 @@ var choice = function (command, searchItem) {
 
             break;
 
+        case 'concert-this':
+            console.log('concert-this was fired')
+            concertData();
 
-        //     case 'concert-this':
-        //         console.log('concert-this was fired')
-        //         // concertThis();
+            break;
 
-        //         break;
+        case 'do-what-it-says':
+            console.log(`do-what-it-says was just fired`);
+            // justDoIt();
 
-        //     case 'do-what-it-says':
-        //         console.log(`do-what-it-says was just fired`);
-        //         // justDoIt();
+            break;
 
-        //         break;
+        default:
+            console.log(`What are you trying to do?`);
 
-        //     default:
-        //         console.log(`What are you trying to do?`);
-
-        //         break;
-        // }
+            break;
     }
 }
+
+let concertData = (searchItem) => {
+
+    axios.get(`https://rest.bandsintown.com/artists/${searchItem}?app_id=faswega`)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+
 let spotifyData = (searchItem) => {
 
     spotify.search({ type: 'track', query: searchItem }, function (err, data) {
@@ -68,6 +73,8 @@ let spotifyData = (searchItem) => {
             return console.log('Error occurred: ' + err);
         }
 
+        console.log(data.artists);
+        console.log(data.album);
         console.log(data.tracks);
     });
 
@@ -98,7 +105,7 @@ let omdbData = (searchItem) => {
         });
 
 }
-var doThis = function (arg1, arg2) {
+let doThis = function (arg1, arg2) {
     choice(arg1, arg2);
 }
 doThis(command, searchItem);

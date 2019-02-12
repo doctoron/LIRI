@@ -5,6 +5,7 @@
   "main": "keys.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "bandsintown": "^1.0.1",
     "dotenv": "^6.2.0",
     "env": "0.0.2",
     "fs": "0.0.1-security",
@@ -15,7 +16,6 @@
     "request": "^2.88.0",
     "spotify": "^0.3.0",
     "spotify-web-api-node": "^4.0.0",
-    "twitter": "^1.7.1"
   },
   "devDependencies": {},
   "scripts": {
