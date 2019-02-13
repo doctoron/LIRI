@@ -1,6 +1,13 @@
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Assignment: LIRI node.js  
+UCF Coding BootCamp
+Ronald Antonio
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
 require("dotenv").config();
 // Use key data from keys.js
 let keys = require('./keys.js');
+let inquirer = require('inquirer');
 let axios = require('axios');
 let Spotify = require('node-spotify-api');
 let spotify = new Spotify(keys.spotify);
@@ -8,12 +15,8 @@ let moment = require('moment');
 let fs = require('fs');
 let command = process.argv[2];
 let searchItem = process.argv.slice(3).join(' ');
-// let defaultMovie = "Mr. Nobody";
-// let defaultSong = 'Happy'
-// let bandsintown = require('bandsintown')('faswega');
-// let omdbApi = './keys.apiKey'
-// let inquirer = require('inquirer');
-// let request = require('request');
+let defaultMovie = 'Mr. Nobody';
+let defaultSong = 'The Sign'
 
 
 let choice = function (command, searchItem) {
@@ -21,44 +24,38 @@ let choice = function (command, searchItem) {
 
     switch (command) {
         case 'movie-this':
-        if (searchItem === " ") {
-            console.log("Tell me the name of your movie?")
-                break;
+            if (searchItem === " ") {
+                omdbData(defaultMovie);
             } else {
                 omdbData(searchItem);
-                break;
             }
+            break;
 
         case 'spotify-this-song':
             if (searchItem === " ") {
-                console.log("Tell me the name of your song?")
-                break;
+                spotifyData(defaultSong);
             } else {
                 spotifyData(searchItem);
-                break;
             }
+            break;
 
         case 'concert-this':
             if (searchItem === " ") {
                 console.log('What band do you wish to follow?')
-                break;
             } else {
                 concertData(searchItem);
                 break;
             }
 
         case 'do-what-it-says':
-            if (searchItem === " ") {
-                console.log("Tell me the name of your song?")
-                break;
-            } else {
-                justDoIt();
-                break;
-            }
+            console.log("Stuck?  Perhaps this will stimulate your thinking?")
+            justDoIt();
+            break;
 
         default:
             console.log(`What are you trying to do?`);
             break;
+
     }
 }
 
@@ -72,8 +69,10 @@ let concertData = (searchItem) => {
             let bandEvents = bandData[0];
             let concerts = [
                 'Name of the venue: ' + bandEvents.venue.name,
-                'Venue location: ' + bandEvents.venue.city + bandEvents.venue.region,
-                'Date of the Event: ' + moment(bandEvents.venue.datetime).format("MM/DD/YYYY")
+                'Venue location: ' + bandEvents.venue.city + " " + bandEvents.venue.country,
+                'Latitude & Longitude: ' + bandEvents.venue.latitude + " & " + bandEvents.venue.longitude,
+                'Date of the Event: ' + moment(bandEvents.venue.datetime).format("MM/DD/YYYY"),
+                'Line up: ' + bandEvents.lineup
             ]
             console.log(concerts);
         }
@@ -109,7 +108,7 @@ let omdbData = (movie) => {
     axios.get(omdbURL)
         .then(function (response) {
             let body = response.data;
-            // console.log(body.Title);
+            console.log(body.Title);
             newFunction(body);
         })
         .catch(function (error) {
@@ -118,8 +117,13 @@ let omdbData = (movie) => {
 
 }
 
-let doThis = function (arg1, arg2) {
-    choice(arg1, arg2);
+// just-do-what-it-says
+let justDoIt = () => {
+    spotifyData(defaultMovie);
+}
+
+let doThis = function (command, searchItem) {
+    choice(command, searchItem);
 }
 
 // Let's begin here
@@ -137,3 +141,41 @@ function newFunction(body) {
     console.log("Rotten Tomatoes URL: " + body.tomatoURL);
 
 }
+// inquirer
+// inquirer
+//     .prompt([
+//         // Create the scope of user friendly choices
+//         {
+//             type: "list",
+//             message: "What is thy bidding?",
+//             choices: ["concert-this", "spotify-this-song", "movie-this", "do-what-it-says"],
+//             name: "command"
+//         },
+//         // Create basic text prompt.
+//         {
+//             type: "input",
+//             message: "What shall I search for you? ",
+//             name: "searchItem"
+//         },
+//         //  Require user confirmation
+//         {
+//             type: "confirm",
+//             message: "Are you sure: ",
+//             name: "confirm",
+//             default: true
+//         }
+//     ])
+//     .then(function (userAnswer) {
+//         //  Display inquirerResponse upon confirmation
+//         if (userAnswer.confirm) {
+//             console.log('command in inquirer ' + userAnswer.command);
+//             console.log('searchItem from inquirer ' + userAnswer.searchItem);
+//             command = userAnswer.command;
+//             searchItem = userAnswer.searchItem;
+//             choice(command, searchItem);
+//         }
+//         else {
+//             prompts.complete();
+//             console.log("It is always one's privilege to serve!");
+//         }
+//     })

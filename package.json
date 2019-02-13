@@ -4,18 +4,22 @@
   "description": "Speech Interpretation and Recognition Interface",
   "main": "keys.js",
   "dependencies": {
+    "author": "Ronald Antonio",
     "axios": "^0.18.0",
     "bandsintown": "^1.0.1",
     "dotenv": "^6.2.0",
     "env": "0.0.2",
     "fs": "0.0.1-security",
+    "homepage": "git+https://github.com/doctoron/LIRI.git#readme",
+    "inquirer": "^6.2.2",
+    "license": "ISC",
     "moment": "^2.24.0",
     "node-omdb": "^1.0.1",
     "node-spotify-api": "^1.0.7",
     "omdb-client": "^2.0.0",
     "request": "^2.88.0",
     "spotify": "^0.3.0",
-    "spotify-web-api-node": "^4.0.0",
+    "spotify-web-api-node": "^4.0.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -26,13 +30,12 @@
     "url": "git+https://github.com/doctoron/LIRI.git"
   },
   "keywords": [
-    "LIRI",
-    "Spotify",
-    "Axios",
     "OMDB",
-    "Moment"
+    "BandsInTown",
+    "Spotify",
+    "Inquirer"
   ],
-  "author": "Ronald Antonio",
+  "author": "ronald antonio",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/doctoron/LIRI/issues"
