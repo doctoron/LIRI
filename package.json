@@ -4,13 +4,11 @@
   "description": "Speech Interpretation and Recognition Interface",
   "main": "keys.js",
   "dependencies": {
-    "author": "Ronald Antonio",
     "axios": "^0.18.0",
     "bandsintown": "^1.0.1",
     "dotenv": "^6.2.0",
     "env": "0.0.2",
     "fs": "0.0.1-security",
-    "homepage": "git+https://github.com/doctoron/LIRI.git#readme",
     "inquirer": "^6.2.2",
     "license": "ISC",
     "moment": "^2.24.0",
