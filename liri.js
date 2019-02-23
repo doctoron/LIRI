@@ -66,7 +66,7 @@ let concertData = (searchItem) => {
         console.log(`Seaching for concerts by ${searchItem}`)
         let bandData = response.data;
         for (let i = 0; i < bandData.length; i++) {
-            let bandEvents = bandData[0];
+            let bandEvents = bandData[i];
             let concerts = [
                 'Name of the venue: ' + bandEvents.venue.name,
                 'Venue location: ' + bandEvents.venue.city + " " + bandEvents.venue.country,
