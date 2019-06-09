@@ -65,6 +65,7 @@ In this assignment, you will make LIRI. LIRI is like iPhone's SIRI. However, whi
     the [Bands In Town API](http://www.artists.bandsintown.com/bandsintown-api)
   * [Moment](https://www.npmjs.com/package/moment)
   * [DotEnv](https://www.npmjs.com/package/dotenv)
+  * [Inquirer](https:/npmjs.com/package/inquirer)
   * IDE: Visual Studio Code 
 
 

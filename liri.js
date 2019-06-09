@@ -141,7 +141,7 @@ function newFunction(body) {
     console.log("Rotten Tomatoes URL: " + body.tomatoURL);
 
 }
-// inquirer
+
 // inquirer
 //     .prompt([
 //         // Create the scope of user friendly choices
